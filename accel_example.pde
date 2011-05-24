@@ -3,14 +3,14 @@
 // screen (click +) to save it as an app.
 var w = 1024;
 var h = 600;
-var sp;
+var b;
 var orientation = [0,0,0];
 
 void setup() {
   size(w, h);
   fill(0);
   frameRate(60);
-  sp = new sphere(w/2, h/2);
+  b = new ball(w/2, h/2);
 }
 
 
@@ -24,12 +24,10 @@ void draw() {
   text("z="+orientation[2], 10, 50);
   text("t="+(new Date().getTime()), 10, 70);
   text("FPS: "+frameRate, 10, 90);
-  //line(w/2, h/2, w/2-(y*20), h/2-(x*20));
-//  text("sp="+sp+"("+sp.x+","+sp.y+")", 10, 90);
-  sp.move(x, y);
-  sp.draw();
+  b.move(x, y);
+  b.draw();
 
-  if (sp.x < 0 || sp.x > w || sp.y < 0 || sp.y > h) {
+  if (b.x < 0 || b.x > w || b.y < 0 || b.y > h) {
      alert("you lose!");
      noLoop();
   } 
@@ -43,7 +41,7 @@ window.ondevicemotion=function(event) {
   orientation[2] = aig.z;
 }
 
-sphere = function(x, y){
+ball = function(x, y){
    this.x = x;
    this.y = y;
 
